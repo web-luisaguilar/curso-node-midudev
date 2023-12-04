@@ -7,6 +7,7 @@ const config = {
   database: 'moviesdb',
 }
 const connection = await mysql.createConnection(config)
+
 connection.connect((err) => {
   if (err) throw err
   console.log('Database is connected!')
@@ -30,7 +31,7 @@ export class MovieModel {
     return movies[0]
   }
   static async create({ input }) {
-    const { title, year, director, duration, poster, rate } = input
+    const { title, movie_year, director, duration, poster, rate } = input
 
     const [uuidResult] = await connection.query('SELECT UUID() uuid;')
     const [{ uuid }] = uuidResult
@@ -38,7 +39,7 @@ export class MovieModel {
     const result = await connection.query(
       `INSERT INTO movie(id,title,movie_year,director,duration,poster,rate) values(UUID_TO_BIN(?),?,?,?,?,?,?)
     ;`,
-      [uuid, title, year, director, duration, poster, rate]
+      [uuid, title, movie_year, director, duration, poster, rate]
     )
     console.log(result)
     return result
@@ -53,11 +54,15 @@ export class MovieModel {
     return result
   }
   static async update({ id, input }) {
-    const { title, year, director, duration, poster, rate } = input
-
-    console.log(title)
-    // const result = await connection.query(`UPDATE movie SET  WHERE id=UUID_TO_BIN(?)`, [id])
-    // console.log(result)
-    // return result
+    const { title, movie_year, director, duration, poster, rate } = input
+    const movie = await this.getById({ id })
+    const newData = Object.values({ ...movie, ...input })
+    newData.push(id)
+    const result = await connection.query(
+      `UPDATE movie SET id=UUID_TO_BIN(?),title=?,movie_year=?,director=?,duration=?,poster=?,rate=? WHERE id=UUID_TO_BIN(?);`,
+      newData
+    )
+    const movieUpdated = await this.getById({ id })
+    return movieUpdated
   }
 }

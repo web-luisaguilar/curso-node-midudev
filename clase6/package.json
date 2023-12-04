@@ -1,0 +1,26 @@
+{
+  "name": "clase6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch ./server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.18.2",
+    "morgan": "1.10.0",
+    "mysql2": "3.6.5",
+    "socket.io": "4.7.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "estandard"
+    ]
+  },
+  "devDependencies": {
+    "standard": "17.1.0"
+  }
+}
