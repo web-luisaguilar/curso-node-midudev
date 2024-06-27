@@ -1,0 +1,290 @@
+<html>
+<header>
+  <style>
+    :root {
+      --md-sys-color-primary: rgb(154 203 250);
+      --md-sys-color-on-primary: rgb(0 51 82);
+      --md-sys-color-primary-container: rgb(11 74 114);
+      --md-sys-color-on-primary-container: rgb(205 229 255);
+      --md-sys-color-secondary: rgb(185 200 218);
+      --md-sys-color-on-secondary: rgb(35 50 64);
+      --md-sys-color-secondary-container: rgb(58 72 87);
+      --md-sys-color-on-secondary-container: rgb(213 228 246);
+      --md-sys-color-tertiary: rgb(210 191 231);
+      --md-sys-color-on-tertiary: rgb(56 42 73);
+      --md-sys-color-tertiary-container: rgb(79 64 97);
+      --md-sys-color-on-tertiary-container: rgb(238 220 255);
+      --md-sys-color-error: rgb(255 180 171);
+      --md-sys-color-on-error: rgb(105 0 5);
+      --md-sys-color-error-container: rgb(147 0 10);
+      --md-sys-color-on-error-container: rgb(255 218 214);
+      --md-sys-color-surface: rgb(16 20 24);
+      --md-sys-color-on-surface: rgb(224 226 232);
+      --md-sys-color-surface-variant: rgb(66 71 78);
+      --md-sys-color-on-surface-variant: rgb(194 199 207);
+      --md-sys-color-outline: rgb(140 145 152);
+      --md-sys-color-outline-variant: rgb(66 71 78);
+      --md-sys-color-shadow: rgb(0 0 0);
+      --md-sys-color-inverse-surface: rgb(224 226 232);
+      --md-sys-color-inverse-on-surface: rgb(45 49 53);
+      --md-sys-color-inverse-primary: rgb(46 98 140);
+      --md-sys-color-primary-fixed: rgb(205 229 255);
+      --md-sys-color-on-primary-fixed: rgb(0 29 50);
+      --md-sys-color-primary-fixed-dim: rgb(154 203 250);
+      --md-sys-color-on-primary-fixed-variant: rgb(11 74 114);
+      --md-sys-color-secondary-fixed: rgb(213 228 246);
+      --md-sys-color-on-secondary-fixed: rgb(14 29 42);
+      --md-sys-color-secondary-fixed-dim: rgb(185 200 218);
+      --md-sys-color-on-secondary-fixed-variant: rgb(58 72 87);
+      --md-sys-color-tertiary-fixed: rgb(238 220 255);
+      --md-sys-color-on-tertiary-fixed: rgb(34 21 51);
+      --md-sys-color-tertiary-fixed-dim: rgb(210 191 231);
+      --md-sys-color-on-tertiary-fixed-variant: rgb(79 64 97);
+      --md-sys-color-surface-dim: rgb(16 20 24);
+      --md-sys-color-surface-bright: rgb(54 57 62);
+      --md-sys-color-surface-container-lowest: rgb(11 15 18);
+      --md-sys-color-surface-container-low: rgb(24 28 32);
+      --md-sys-color-surface-container: rgb(28 32 36);
+      --md-sys-color-surface-container-high: rgb(39 42 46);
+      --md-sys-color-surface-container-highest: rgb(49 53 57);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    *,
+    *:after,
+    *::before {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100dvh;
+      background: var(--md-sys-color-surface);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-wrap: balance;
+    }
+
+    html {
+      font-size: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    p {
+      text-wrap: pretty;
+    }
+
+    img,
+    video,
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+
+    .form-container {
+      display: flex;
+      max-width: 300px;
+      border: thin solid var(--md-sys-color-outline-variant);
+      flex-direction: column;
+      padding: 16px;
+      background-color: var(--md-sys-color-surface-container);
+    }
+
+    .form-container h2,
+    p {
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      gap: 24px;
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      padding: 8px 20px;
+
+    }
+
+    label {
+      width: 100%;
+      color: var(--md-sys-color-on-surface);
+      font-size: 14pt;
+    }
+
+    h2 {
+      font-size: 22pt;
+      margin: 12px 0;
+    }
+
+    input {
+      width: 100%;
+      background: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      border: thin solid var(--md-sys-color-outline);
+      font-size: 14pt;
+      margin-bottom: 16px;
+      outline: none;
+      padding: 4px 8px;
+    }
+  </style>
+</header>
+
+<body>
+  <div class="container">
+
+    <% if(typeof username!=='undefined' ){%>
+      <div class="form-container">
+        <h2>Hola <%= username %>!</h2>
+        <p>Estas en el panel de administracion </p>
+        <button id="close-session">Cerrar sesion</button>
+      </div>
+      <% }%>
+
+        <% if (typeof username==='undefined' ) { %>
+
+          <div class="form-container">
+            <form id="login-form">
+              <h2>Login</h2>
+              <label for="login-username">Username</label>
+              <input type="text" id="login-username" name="username" required>
+
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" name="password" required>
+
+              <button type="submit">Login</button>
+              <span>&nbsp;</span>
+            </form>
+          </div>
+
+
+          <div class="form-container">
+            <form id="register-form">
+              <h2>Register</h2>
+              <label for="register-username">Username</label>
+              <input type="text" id="register-username" name="username" required>
+
+              <label for="register-password">Password</label>
+              <input type="password" id="register-password" name="password" required>
+
+              <label for="register-confirm-password">Confirm Password</label>
+              <input type="password" id="register-confirm-password" name="confirm-password" required>
+
+              <button type="submit">Register</button>
+              <span>&nbsp;</span>
+            </form>
+          </div>
+          <% } %>
+
+            <script>
+
+              const $ = el => document.querySelector(el)
+
+              const loginForm = $('#login-form')
+              const loginSpan = $('#login-form span')
+
+              const registerForm = $('#register-form')
+              const registerSpan = $('#register-form span')
+
+              const logoutButton = $('#close-session')
+
+              loginForm?.addEventListener('submit', e => {
+                e.preventDefault()
+                const username = $('#login-username').value
+                const password = $('#login-password').value
+
+                fetch('/login', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ username, password })
+                })
+                  .then(res => {
+                    if (res.ok) {
+                      loginSpan.innerText = 'Sesión iniciada...  Entrando...'
+                      loginSpan.style.color = 'green'
+                      setTimeout(() => {
+                        window.location.href = '/protected'
+                      }, 2000)
+                    } else {
+                      loginSpan.innerText = 'Error al iniciar sesión'
+                      loginSpan.style.color = 'red'
+                    }
+                  })
+              })
+
+
+              registerForm?.addEventListener('submit', e => {
+                e.preventDefault()
+                const username = $('#register-username').value
+                const password = $('#register-password').value
+                const confirmPassword = $('#register-confirm-password').value
+
+                if (password !== confirmPassword) {
+                  alert('Passwords do not match')
+                  return
+                }
+
+                fetch('/register', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ username, password })
+                }).then(res => {
+                  console.log(res)
+                  if (res.ok) {
+                    registerSpan.innerText = 'Usuario registrado. Entrando...'
+                    registerSpan.style.color = 'green'
+                    setTimeout(() => {
+                      window.location.href = '/protected'
+                    }, 2000)
+                  } else {
+                    registerSpan.innerText = 'Error al registrar usuario'
+                    registerSpan.style.color = 'red'
+                  }
+                })
+              })
+
+              logoutButton?.addEventListener('click', e => {
+                e.preventDefault()
+                fetch('/logout', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                })
+                  .then(res => {
+                    console.log(res)
+                    window.location.href = '/'
+                  })
+              })
+
+
+            </script>
+
+
+
+
+
+  </div>
+</body>
+
+</html>
